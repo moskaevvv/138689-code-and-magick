@@ -36,27 +36,27 @@
     var fireballSize = 22;
     
     var left = true;
-    var getFireballSpeed = function(left){
-        if(left) {
+    var getFireballSpeed = function (left) {
+        if (left) {
             return 5;
-            } else {
+        }   else {
             return 2;
-            }
-        };
+        }
+    };
     
     var wizardSpeed = 3;
     
     var wizardWidth = 70;
-    var getWizardHeight = function(wizardWidth){
-        return 1.337*wizardWidth;
+    var getWizardHeight = function (wizardWidth) {
+        return 1.337 * wizardWidth;
     };
     
-    var getWizardX=function(width){
-        return 0.5*width - 0.5*wizardWidth;
+    var getWizardX = function (width) {
+        return 0.5 * width - 0.5 * wizardWidth;
     };
     
-    var getWizardY=function(height){
-        return height - (2/3)*1.337*wizardWidth;
+    var getWizardY = function (height) {
+        return height - (2/3) * 1.337 * wizardWidth;
     };    
     
 </script>    
