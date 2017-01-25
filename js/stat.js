@@ -40,14 +40,15 @@ var cloudDraw = function (ctx, fillColor, strokeParams, fillParams) {
 };
 
 //поиск цены деления высоты столбиков:
-var max = -1;
 var maxSearch = function (times) {
+    var max = -1;
     for (var i = 0; i < times.length; i++) {
         var time = times[i];
         if (time > max) {
         max = time;
         };
     };
+    return max;
 };
 
 //рисование текста:
@@ -78,23 +79,23 @@ var columnDraw = function (ctx, name, time, columnCornerX, height) {
 };
 
 //сборка:
-window.renderStatistics = function (ctx, names, times) {    
-    var canvas = document.querySelector('canvas');
-    cloudDraw(canvas.getContext('2d'), shadowColor, shadowBorder, shadowBody);
-    cloudDraw(canvas.getContext('2d'), shapeColor, shapeBorder, shapeBody);
-    textDraw(canvas.getContext('2d'));
+window.renderStatistics = function (canvas, names, times) {    
     
-    maxSearch(times);    
-    var step = histoHeight / max;
+    cloudDraw(canvas, shadowColor, shadowBorder, shadowBody);
+    cloudDraw(canvas, shapeColor, shapeBorder, shapeBody);
+    textDraw(canvas);
+    
+       
+    var step = histoHeight / maxSearch(times);
     
     var columnCornerX = shapeBody[0] + 55;
     
     for (var i = 0; i < times.length; i++) {
-        var name = names [i];
-        var time = times [i];
+        var name = names[i];
+        var time = times[i];
         var height = step * time;
     
-        columnDraw(canvas.getContext('2d'), name, time, columnCornerX, height);
+        columnDraw(canvas, name, time, columnCornerX, height);
         
         var columnCornerX = columnCornerX + betweenColumns + columnWidth;
     };
