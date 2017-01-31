@@ -89,7 +89,6 @@ window.renderStatistics = function (canvas, names, times) {
     var step = histoHeight / maxSearch(times);
     
     var columnCornerX = shapeBody[0] + 55;
-    
     for (var i = 0; i < times.length; i++) {
         var name = names[i];
         var time = times[i];
@@ -97,7 +96,7 @@ window.renderStatistics = function (canvas, names, times) {
     
         columnDraw(canvas, name, time, columnCornerX, height);
         
-        var columnCornerX = columnCornerX + betweenColumns + columnWidth;
+        columnCornerX = columnCornerX + betweenColumns + columnWidth;
     };
 
 };
