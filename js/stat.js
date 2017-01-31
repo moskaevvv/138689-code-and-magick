@@ -26,7 +26,6 @@ var histoHeight = 150;
 var columnWidth = 40;
 var betweenColumns = 50; //расстояние между столбиками
 var columnCornerY = 245; //вертикальная координата оснований столбиков 
-var columnCornerX = shapeBody[0] + 55;
 
 //рандомный цвет столбиков:
 var randomColor = function () {
@@ -89,7 +88,7 @@ window.renderStatistics = function (canvas, names, times) {
        
     var step = histoHeight / maxSearch(times);
     
-    
+    var columnCornerX = shapeBody[0] + 55;
     for (var i = 0; i < times.length; i++) {
         var name = names[i];
         var time = times[i];

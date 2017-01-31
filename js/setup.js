@@ -34,21 +34,22 @@ var wizardCoatColors = [
 ];
 
 var wizardCoat = document.querySelector('#wizard-coat');
-var wizardCoatColorChange = function() {
-    wizardCoat.style.fill = wizardCoatColors[colorNumber];
-};
+var colorNumber = 0;
 
-var colorNumber = 1;
 var colorCount = function() {
     if (colorNumber < wizardCoatColors.length - 1) {
-        return colorNumber++;
+        return colorNumber = colorNumber + 1;
     } else {
-        colorNumber = 0;
+        return colorNumber = 0;
     };
 };
 
+var wizardCoatColorChange = function() {
+    wizardCoat.style.fill = wizardCoatColors[colorCount()];
+};
+
 wizardCoat.addEventListener('click', wizardCoatColorChange);
-wizardCoat.addEventListener('click', colorCount);
+
 
 
 //рандомная смена цвета глаз
@@ -61,10 +62,12 @@ var wizardEyesColors = [
 ];
 
 var wizardEyes = document.querySelector('#wizard-eyes');
+var getRandomEyeColor = function() {
+    return Math.floor(Math.random() * wizardEyesColors.length);
+};
+
 var wizardEyesColorChange = function() {
-    wizardEyes.style.fill = wizardEyesColors [
-        Math.floor(Math.random() * (wizardEyesColors.length + 1))
-    ];
+    wizardEyes.style.fill = wizardEyesColors[getRandomEyeColor()];
 };
 wizardEyes.addEventListener('click', wizardEyesColorChange);
 
@@ -79,18 +82,18 @@ var fireballColors = [
 ];
 
 var fireball = document.querySelector('.setup-fireball-wrap');
-var fireballColorChange = function() {
-    fireball.style.backgroundColor = fireballColors[fireballColorNumber];
-};
+var fireballColorNumber = 0;
 
-var fireballColorNumber = 1;
 var fireballColorCount = function() {
     if (fireballColorNumber < fireballColors.length - 1) {
-        return fireballColorNumber++;
+        return fireballColorNumber = fireballColorNumber + 1;
     } else {
-        fireballColorNumber = 0;
+        return fireballColorNumber = 0;
     };
 };
 
+var fireballColorChange = function() {
+    fireball.style.backgroundColor = fireballColors[fireballColorCount()];
+};
+
 fireball.addEventListener('click', fireballColorChange);
-fireball.addEventListener('click', fireballColorCount);
