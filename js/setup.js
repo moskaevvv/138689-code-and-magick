@@ -1,10 +1,14 @@
 'use strict';
+var ENTER_KEY_CODE = 13;
+var ESCAPE_KEY_CODE = 27;
+
 
 
 //открытие-закрытие поп-апа
 var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 var setupClose = setup.querySelector('.setup-close');
+var setupButton = setup.querySelector('.setup-submit');
 
 var setupOpenRun = function() {
     setup.classList.remove('invisible');    
@@ -15,12 +19,60 @@ var setupCloseRun = function() {
 
 setupOpen.addEventListener('click', setupOpenRun);
 setupClose.addEventListener('click', setupCloseRun);
+setupButton.addEventListener('click', setupCloseRun);
+
+
+
+//+ARIA
+var setupOpenIcon = document.querySelector('.setup-open-icon');
+
+var setupEscClose = function(evt) {
+    if (evt.keyCode === ESCAPE_KEY_CODE) {
+        setupCloseRun();
+    };
+};
+
+var escTarget = function () {
+    document.addEventListener('keydown', setupEscClose);
+};
+
+var ariaPressedOn = function() {
+    setupOpenIcon.setAttribute('aria-pressed', 'true');
+};
+
+var setupOpenKeyboardRun = function(evt) {
+    if (evt.keyCode === ENTER_KEY_CODE) {
+        setupOpenRun();
+        escTarget();
+        ariaPressedOn();
+    };
+};
+
+var setupCloseKeyboardRun = function(evt) {
+    if (evt.keyCode === ENTER_KEY_CODE) {
+        setupCloseRun();
+        setupClose.setAttribute('aria-pressed', 'true');
+    };
+};
+
+var setupCloseKeyboardSubmit = function(evt) {
+    if (evt.keyCode === ENTER_KEY_CODE) {
+        setupCloseRun();
+        setupButton.setAttribute('aria-pressed', 'true');
+    };
+};
+                       
+setupOpenIcon.addEventListener('keydown', setupOpenKeyboardRun);
+setupClose.addEventListener('keydown', setupCloseKeyboardRun);
+setupButton.addEventListener('keydown', setupCloseKeyboardSubmit);
+
 
 
 //валидация ввода имени
 var setupUserName = setup.querySelector('.setup-user-name');
 setupUserName.required = true;
 setupUserName.maxLength = '50';
+
 
 
 //смена цвета накидки
@@ -70,6 +122,7 @@ var wizardEyesColorChange = function() {
     wizardEyes.style.fill = wizardEyesColors[getRandomEyeColor()];
 };
 wizardEyes.addEventListener('click', wizardEyesColorChange);
+
 
 
 //смена цвета файрболов
